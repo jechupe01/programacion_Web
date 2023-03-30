@@ -1,0 +1,41 @@
+def organizador(libro1: dict, libro2: dict, libro3: dict, libro4: dict) -> str:
+    
+    libros = [libro1, libro2, libro3, libro4]
+    
+    
+    mejor_libro = None
+    ganancia_maxima = 0
+    
+    
+    for libro in libros:
+        
+        ganancia = libro['precio'] - libro['costo']
+        
+        
+        if libro['cantidad'] > 800:
+            precio = libro['precio'] * 1.1
+        else:
+            precio = libro['precio']
+        
+        if ganancia >= 14000 and libro['cantidad'] >= 100:
+            ganancia_total = ganancia * libro['cantidad']
+            if ganancia_total > ganancia_maxima:
+                ganancia_maxima = ganancia_total
+                mejor_libro = libro
+    
+    
+    if mejor_libro is None:
+        return "Ninguno de los libros es la mejor opcion para ser vendido"
+    else:
+        
+        cadena = "El libro {} escrito por {} en el año {} con el codigo {} y precio de {} es la mejor opcion a vender".format(
+            mejor_libro['nombre'], mejor_libro['autor'], mejor_libro['anio_publicacion'], mejor_libro['codigo'], mejor_libro['precio'])
+        return cadena
+
+libro1 = {'nombre': 'Harry Potter y la piedra filosofal', 'codigo': 'HPJK1997', 'autor': 'J.K Rowling', 'anio_publicacion': 1997, 'cantidad': 200, 'precio': 20000, 'costo': 9000}
+libro2 = {'nombre': 'Los Juegos del Hambre', 'codigo': 'JHSC2008', 'autor': 'Suzanne Collins', 'anio_publicacion': 2008, 'cantidad': 20, 'precio': 27000, 'costo': 12000}
+libro3 = {'nombre': 'El Hobbit', 'codigo': 'EHJR1937', 'autor': 'J.R.R. Tolkien', 'anio_publicacion': 1937, 'cantidad': 100, 'precio': 30000, 'costo': 15000}
+libro4 = {'nombre': 'Hamlet', 'codigo': 'HWS1589', 'autor': 'William Shakespeare', 'anio_publicacion': 1589, 'cantidad': 20, 'precio': 26000, 'costo': 13000}
+
+
+print(organizador(libro1, libro2, libro3, libro4))
